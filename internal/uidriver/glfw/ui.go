@@ -114,16 +114,7 @@ func Get() *UserInterface {
 	return theUI
 }
 
-func init() {
-	hideConsoleWindowOnWindows()
-	if err := initialize(); err != nil {
-		panic(err)
-	}
-	glfw.SetMonitorCallback(func(monitor *glfw.Monitor, event glfw.PeripheralEvent) {
-		cacheMonitors()
-	})
-	cacheMonitors()
-}
+
 
 func initialize() error {
 	if err := glfw.Init(); err != nil {

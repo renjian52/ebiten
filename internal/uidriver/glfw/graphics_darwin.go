@@ -30,9 +30,7 @@ import "C"
 
 import (
 	"github.com/hajimehoshi/ebiten/internal/driver"
-	"github.com/hajimehoshi/ebiten/internal/graphicsdriver/metal"
 	"github.com/hajimehoshi/ebiten/internal/graphicsdriver/metal/mtl"
-	"github.com/hajimehoshi/ebiten/internal/graphicsdriver/opengl"
 )
 
 var graphics driver.Graphics
@@ -50,13 +48,7 @@ func supportsMetal() bool {
 	return true
 }
 
-func init() {
-	if supportsMetal() {
-		graphics = metal.Get()
-		return
-	}
-	graphics = opengl.Get()
-}
+
 
 func (*UserInterface) Graphics() driver.Graphics {
 	return graphics
