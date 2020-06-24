@@ -44,6 +44,10 @@ type Image struct {
 	disposed bool
 }
 
+func (i *Image) ToRGBA() *image.RGBA{
+	return i.buffered.Convert2RGBA()
+}
+
 func (i *Image) copyCheck() {
 	if i.addr != i {
 		panic("ebiten: illegal use of non-zero Image copied by value")

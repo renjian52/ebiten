@@ -159,6 +159,36 @@ func (img *Image) Pixels(x, y, width, height int) (pix []byte, err error) {
 	return pix, nil
 }
 
+func (img *Image) Convert2RGBA() *image.RGBA{
+	var pix []byte
+	if img.hasFill {
+		pix = make([]byte, 4*img.width*img.height)
+		for i := 0; i < len(pix)/4; i++ {
+			pix[4*i] = img.fillColor.R
+			pix[4*i+1] = img.fillColor.G
+			pix[4*i+2] = img.fillColor.B
+			pix[4*i+3] = img.fillColor.A
+		}
+	}else{
+		pix = img.pixels
+	}
+
+	return &image.RGBA{
+		Pix:    pix,
+		Stride: 4 * img.width,
+		Rect:   image.Rectangle{
+			Min: image.Point{
+				X: 0,
+				Y: 0,
+			},
+			Max: image.Point{
+				X: img.width,
+				Y: img.height,
+			},
+		},
+	}
+}
+
 func (i *Image) Dump(name string, blackbg bool) error {
 	checkDelayedCommandsFlushed("Dump")
 	return i.img.Dump(name, blackbg)
