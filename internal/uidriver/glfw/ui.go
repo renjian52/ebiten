@@ -562,10 +562,6 @@ func (u *UserInterface) deviceScaleFactor() float64 {
 	return devicescale.GetAt(u.currentMonitor().GetPos())
 }
 
-func init() {
-	// Lock the main thread.
-	runtime.LockOSThread()
-}
 
 func (u *UserInterface) Run(uicontext driver.UIContext) error {
 	u.context = uicontext
