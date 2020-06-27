@@ -18,6 +18,7 @@ import (
 	"fmt"
 	"image"
 	"image/color"
+	"log"
 
 	"github.com/hajimehoshi/ebiten/internal/affine"
 	"github.com/hajimehoshi/ebiten/internal/driver"
@@ -160,15 +161,10 @@ func (img *Image) Pixels(x, y, width, height int) (pix []byte, err error) {
 }
 
 func (img *Image) Convert2RGBA() *image.RGBA{
-	var pix []byte
-	if img.pixels == nil {
-		pix, err := img.img.Pixels(0, 0, img.width, img.height)
-		if err != nil {
-			return nil
-		}
-		img.pixels = pix
-	}else{
-		pix = img.pixels
+	pix,err := img.Pixels(0,0,img.width,img.height)
+	if err != nil{
+		log.Printf("Convert2RGBA: image pixels is not right")
+		return nil
 	}
 
 	return &image.RGBA{
