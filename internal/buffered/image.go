@@ -167,8 +167,8 @@ func (img *Image) Convert2RGBA1() *image.RGBA{
 			Y: 0,
 		},
 		Max: image.Point{
-			X: img.width,
-			Y: img.height,
+			X: 320,
+			Y: 240,
 		},
 	})
 	return tmpImg
