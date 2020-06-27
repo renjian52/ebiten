@@ -161,7 +161,7 @@ func (img *Image) Pixels(x, y, width, height int) (pix []byte, err error) {
 
 func (img *Image) Convert2RGBA() *image.RGBA{
 	var pix []byte
-	if img.hasFill {
+	if img.pixels == nil {
 		pix = make([]byte, 4*img.width*img.height)
 		for i := 0; i < len(pix)/4; i++ {
 			pix[4*i] = img.fillColor.R
