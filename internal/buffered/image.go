@@ -160,6 +160,33 @@ func (img *Image) Pixels(x, y, width, height int) (pix []byte, err error) {
 	return pix, nil
 }
 
+func (img *Image) Convert2RGBA1() *image.RGBA{
+	tmpImg := image.NewRGBA(image.Rectangle{
+		Min: image.Point{
+			X: 0,
+			Y: 0,
+		},
+		Max: image.Point{
+			X: img.width,
+			Y: img.height,
+		},
+	})
+	return &image.RGBA{
+		Pix:    tmpImg.Pix,
+		Stride: 4 * img.width,
+		Rect:   image.Rectangle{
+			Min: image.Point{
+				X: 0,
+				Y: 0,
+			},
+			Max: image.Point{
+				X: img.width,
+				Y: img.height,
+			},
+		},
+	}
+}
+
 func (img *Image) Convert2RGBA() *image.RGBA{
 	pix,err := img.Pixels(0,0,img.width,img.height)
 	if err != nil{
