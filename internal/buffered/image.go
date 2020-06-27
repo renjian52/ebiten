@@ -171,20 +171,7 @@ func (img *Image) Convert2RGBA1() *image.RGBA{
 			Y: img.height,
 		},
 	})
-	return &image.RGBA{
-		Pix:    tmpImg.Pix,
-		Stride: 4 * img.width,
-		Rect:   image.Rectangle{
-			Min: image.Point{
-				X: 0,
-				Y: 0,
-			},
-			Max: image.Point{
-				X: img.width,
-				Y: img.height,
-			},
-		},
-	}
+	return tmpImg
 }
 
 func (img *Image) Convert2RGBA() *image.RGBA{
